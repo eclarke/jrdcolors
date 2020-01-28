@@ -103,13 +103,14 @@ jrd_pal_ramp <- function(palette = "cool", reverse = FALSE, ...) {
 #'
 #' @param palette Character name of palette in jrd_palettes
 #' @param reverse Boolean indicating whether the palette should be reversed
+#' @param recycle the palette if more colors are requested than available
 #'
-jrd_pal_discrete <- function(palette = "cool", reverse = FALSE) {
+jrd_pal_discrete <- function(palette = "cool", reverse = FALSE, extend = FALSE) {
   pal <- jc_pal[[palette]]
   
   if (reverse) pal <- rev(pal)
   
-  return(function(n) unname(pal[1:n]))
+  return(function(n) unname(rep(pal, ifelse(extend, 4, 1))[1:n]))
 }
 
 #' Color scale constructor for jrd colors
