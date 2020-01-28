@@ -118,12 +118,13 @@ jrd_pal_discrete <- function(palette = "cool", reverse = FALSE, extend = FALSE) 
 #' @param palette Character name of palette in jrd_palettes
 #' @param reverse Boolean indicating whether the palette should be reversed
 #' @param discrete Boolean indicating whether or not the scale should be discrete
+#' @param recycle the palette if more colors are requested than available
 #' @param ... Additional arguments passed to discrete_scale() or
 #'            scale_color_gradientn(), used respectively when discrete is TRUE or FALSE
 #'
-scale_color_jrd <- function(palette = "cool", discrete = TRUE, reverse = FALSE, ...) {
+scale_color_jrd <- function(palette = "cool", discrete = TRUE, reverse = FALSE, extend = FALSE, ...) {
   if (discrete) {
-    pal = jrd_pal_discrete(palette=palette, reverse=reverse)
+    pal = jrd_pal_discrete(palette=palette, reverse=reverse, extend=extend)
     discrete_scale("colour", paste0("jrd_", palette), palette = pal, ...)    
   } else {
     pal = jrd_pal_ramp(palette=palette, reverse=reverse)
@@ -135,13 +136,14 @@ scale_color_jrd <- function(palette = "cool", discrete = TRUE, reverse = FALSE, 
 #'
 #' @param palette Character name of palette in jc_pal
 #' @param discrete Boolean indicating whether or not the scale should be discrete
-#' @param reverse Boolean indicating whether the palette should be reversed
+#' @param reverse Boolean indicating whether the palette should be reverse
+#' @param recycle the palette if more colors are requested than available
 #' @param ... Additional arguments passed to discrete_scale() or
 #'            scale_fill_gradientn(), used respectively when discrete is TRUE or FALSE
 #'
-scale_fill_jrd <- function(palette = "cool", discrete=TRUE, reverse = FALSE, ...) {
+scale_fill_jrd <- function(palette = "cool", discrete=TRUE, reverse = FALSE, extend = FALSE, ...) {
   if (discrete) {
-    pal = jrd_pal_discrete(palette=palette, reverse=reverse)
+    pal = jrd_pal_discrete(palette=palette, reverse=reverse, extend=extend)
     discrete_scale("fill", paste0("jrd_", palette), palette = pal, ...)    
   } else {
     pal = jrd_pal_ramp(palette=palette, reverse=reverse)
